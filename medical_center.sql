@@ -5,30 +5,30 @@ CREATE DATABASE medical_center;
 \c medical_center
 
 CREATE TABLE doctors (
-	id serial PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	dr_firstname VARCHAR(15) NOT NULL,
 	dr_lastname VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE patients (
-	id serial PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	firstname VARCHAR(15) NOT NULL,
 	lastname VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE diseases (
-	id serial PRIMARY KEY,
-	disease_name VARCHAR(25) NOT NULL
+	id SERIAL PRIMARY KEY,
+	disease_name VARCHAR(25) UNIQUE NOT NULL
 );
 
 CREATE TABLE patients_doctors (
-    id serial PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     patient_id INTEGER NOT NULL REFERENCES patients ON DELETE CASCADE,
     doctor_id INTEGER NOT NULL REFERENCES doctors ON DELETE CASCADE
 );
 
 CREATE TABLE patients_diseases (
-    id serial PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     patient_id INTEGER NOT NULL REFERENCES patients ON DELETE CASCADE,
     disease_id INTEGER NOT NULL REFERENCES diseases ON DELETE CASCADE
 );
@@ -54,7 +54,7 @@ VALUES
 (1, 2),
 (2, 2);
 
-INSERT INTO  patients_diseases (patient_id, disease_id)
+INSERT INTO patients_diseases (patient_id, disease_id)
 VALUES
 (1, 1),
 (2, 1),
