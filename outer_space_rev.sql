@@ -93,3 +93,9 @@ VALUES
 (4, 16),
 (4, 17);
 
+SELECT p.planet_name, m.moon_name
+FROM planets p
+JOIN planet_moons pm
+ON pm.planet_id = p.id
+JOIN moons m
+ON pm.moon_id = m.id;
